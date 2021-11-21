@@ -44,7 +44,7 @@ function App() {
     <div className="App">
       <h1>Contact App</h1>
       <Switch>
-        <Route path="/contact-list/:id" component={(props) => <UserInformation contacts={contacts} {...props} />} />
+        <Route path="/user/:id" component={UserInformation} />
         <Route
           path="/contact-list"
           component={() => (

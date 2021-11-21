@@ -13,10 +13,10 @@ const ContactList = ({ contacts, onDelete }) => {
           const {name, email, id} = item;
         return (
             <div key={id} className={styles.container}>
-                <Link to={`/contact-list/:${id}`} style={{textDecoration:"none", color:"black"}}>
+                <Link to={{pathname:`/user/:${id}`, state:{name: item.name, email: item.email}}} style={{textDecoration:"none", color:"black"}}>
                     <div className={styles.value}>
-                    <p>name: {name}</p>
-                    <p>email: {email}</p>
+                        <p>name: {name}</p>
+                        <p>email: {email}</p>
                     </div>
                 </Link>
                 <button className={styles.deleteBtn} onClick={() => onDelete(id)}>delete</button>
