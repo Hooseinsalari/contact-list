@@ -35,3 +35,8 @@
     cursor: pointer;
     margin-bottom: 10px;
 }
+
+.submitBtn a {
+    height: fit-content;
+    width: fit-content;
+}
