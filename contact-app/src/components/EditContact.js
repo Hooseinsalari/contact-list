@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getOneContact } from "../services/getOneContact";
 
 // style
-import styles from "./AddContact.module.css";
+import styles from "./EditContact.module.css";
 
-const AddContact = ({ addContactHandler, history}) => {
+const EditContact = ({ editContactHandler, history, match}) => {
   const [contact, setContact] = useState({ name: "", email: "" });
 
   const changeHandler = (event) => {
@@ -17,10 +18,22 @@ const AddContact = ({ addContactHandler, history}) => {
       return;
     }
     event.preventDefault();
-    addContactHandler(contact);
+    editContactHandler(contact,match.params.id);
     setContact({ name: "", email: "" });
     history.push("/contact-list")
   };
+
+  useEffect(()=>{
+      const localFetch = async () => {
+          try {
+            const {data} = await getOneContact(match.params.id);
+            setContact({name: data.name, email: data.email})
+          } catch (error) {
+              
+          }
+      }
+      localFetch();
+  },[])
 
   return (
     <>
@@ -47,11 +60,11 @@ const AddContact = ({ addContactHandler, history}) => {
         </div>
     
         <button type="submit" className={styles.submitBtn}>
-          submit
+            Update Contact
         </button>
       </form>
     </>
   );
 };
 
-export default AddContact;
+export default EditContact;

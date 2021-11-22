@@ -1,6 +1,6 @@
 .container {
     border: 2px solid #6B7280;
-    width: 400px;
+    width: 485px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -20,6 +20,16 @@
     border-radius: 10px;
     background-color: rgb(233, 202, 202);
     border: 2px solid red;
+    font-size: 18px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.editBtn {
+    padding: 7px;
+    border-radius: 10px;
+    background-color: rgb(202, 233, 205);
+    border: 2px solid rgb(0, 255, 64);
     font-size: 18px;
     cursor: pointer;
     margin-right: 5px;

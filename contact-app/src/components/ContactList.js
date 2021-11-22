@@ -19,7 +19,10 @@ const ContactList = ({ contacts, onDelete }) => {
                         <p>email: {email}</p>
                     </div>
                 </Link>
-                <button className={styles.deleteBtn} onClick={() => onDelete(id)}>delete</button>
+                <div>
+                  <Link to={`/edit/${id}`}><button className={styles.editBtn}>Edit</button></Link>
+                  <button className={styles.deleteBtn} onClick={() => onDelete(id)}>Delete</button>
+                </div>
             </div>
             );
         
