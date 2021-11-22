@@ -7,38 +7,54 @@ import AddContact from "./components/AddContact";
 import ContactList from "./components/ContactList";
 import UserInformation from "./components/UserInformation";
 
+// http
+import { getContacts } from "./services/getAllContacts";
+import { deleteOneContact } from "./services/deleteContactsService";
+import { postContact } from "./services/postContactService";
+
 function App() {
   const [contacts, setContacts] = useState([]);
 
-  const addContactHandler = (contact) => {
-    setContacts([
-      ...contacts,
-      {
-        id: Math.ceil(Math.random() * 100),
-        name: contact.name,
-        email: contact.email,
-      },
-    ]);
-    // console.log(contacts)
+  const addContactHandler = async (contact) => {
+
+    try {
+      const {data} = await postContact(contact)
+      setContacts([
+        ...contacts,
+        data
+      ])
+      console.log(data)
+      
+    } catch (error) {
+      console.log(error)
+    }
   };
 
-  const deleteHandler = (id) => {
-    // console.log("click", id)
-    const filteredContacts = contacts.filter((item) => item.id !== id);
-    // console.log(filteredContacts)
-    setContacts(filteredContacts);
+  const deleteHandler = async (id) => {
+    try {
+      await deleteOneContact(id)
+      const filteredContacts = contacts.filter((item) => item.id !== id);
+      setContacts(filteredContacts);
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   useEffect(() => {
-    const savedContacts = JSON.parse(localStorage.getItem("contacts"));
-    if (savedContacts) {
-      setContacts(savedContacts);
+    // const savedContacts = JSON.parse(localStorage.getItem("contacts"));
+    // if (savedContacts) {
+    //   setContacts(savedContacts);
+    // }
+    const fetchContacts = async () => {
+      const {data} = await getContacts()
+      setContacts(data)
+    }
+    try {
+      fetchContacts()
+    } catch (error) {
+      // console.log(error)
     }
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-  }, [contacts]);
 
   return (
     <div className="App">
