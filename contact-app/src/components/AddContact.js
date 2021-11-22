@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { postContact } from "../services/postContactService";
 
 // style
 import styles from "./AddContact.module.css";
@@ -10,16 +11,21 @@ const AddContact = ({ addContactHandler, history}) => {
     setContact({ ...contact, [event.target.name]: event.target.value });
   };
 
-  const submitHandler = (event) => {
+
+  const submitHandler = async (event) => {
     if (!contact.name || !contact.email) {
       event.preventDefault();
       alert("all fields are mandatory!");
       return;
     }
     event.preventDefault();
-    addContactHandler(contact);
-    setContact({ name: "", email: "" });
-    history.push("/contact-list")
+    try {
+      await postContact(contact)
+      setContact({ name: "", email: "" });
+      history.push("/contact-list")
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
