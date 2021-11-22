@@ -10,54 +10,6 @@ import EditContact from "./components/EditContact";
 
 function App() {
 
-  // const addContactHandler = async (contact) => {
-
-  //   try {
-  //     const {data} = await postContact(contact)
-  //     setContacts([
-  //       ...contacts,
-  //       data
-  //     ])
-  //     console.log(data)
-
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // };
-
-  // const editContactHandler = async (contant, id) => {
-  //   await putContant(id, contant);
-  //   const { data } = await getContacts(id, contant);
-  //   setContacts(data);
-  //   console.log(data);
-  // };
-
-  // const deleteHandler = async (id) => {
-  //   try {
-  //     await deleteOneContact(id)
-  //     const filteredContacts = contacts.filter((item) => item.id !== id);
-  //     setContacts(filteredContacts);
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   // const savedContacts = JSON.parse(localStorage.getItem("contacts"));
-  //   // if (savedContacts) {
-  //   //   setContacts(savedContacts);
-  //   // }
-  //   const fetchContacts = async () => {
-  //     const {data} = await getContacts()
-  //     setContacts(data)
-  //   }
-  //   try {
-  //     fetchContacts()
-  //   } catch (error) {
-  //     // console.log(error)
-  //   }
-  // }, []);
-
   return (
     <div className="App">
       <h1>Contact App</h1>
